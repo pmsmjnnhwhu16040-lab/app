@@ -1,0 +1,17 @@
+# বটের ডাটা (ইউজার, ব্যালেন্স, নতুন বটের টোকেন) - গিটহাবে যাবে না
+data.json
+data.json.tmp
+data.json.broken
+bots/
+
+# পাইথন
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.env
+
+# অন্যান্য
+.DS_Store
+*.log
