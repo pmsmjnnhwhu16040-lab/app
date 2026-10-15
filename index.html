@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Premium Hosting</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{--bg:#0a0a12;--c:rgba(255,255,255,.055);--b:rgba(255,255,255,.1);--t:#f5f5fa;--m:#9496ad;--p:#7c5cff;--p2:#22d3ee;--ok:#34d399;--bad:#f87171;--w:#fbbf24}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+body{font:15px/1.55 'Hind Siliguri','Noto Sans Bengali',system-ui,sans-serif;color:var(--t);min-height:100vh;padding:max(14px,env(safe-area-inset-top)) 16px calc(92px + env(safe-area-inset-bottom));background:radial-gradient(800px 480px at 90% -8%,#3b2a9a66,transparent),radial-gradient(600px 400px at -10% 8%,#0e749044,transparent),var(--bg)}
+h3{font-size:14px;color:var(--m);font-weight:600;margin:20px 2px 10px;letter-spacing:.4px}
+.sm{font-size:12.5px;color:var(--m)}.wide{width:100%;margin-top:10px}
+.hero,.card{background:linear-gradient(145deg,rgba(124,92,255,.22),rgba(34,211,238,.08));border:1px solid var(--b);border-radius:22px;padding:18px;backdrop-filter:blur(14px);margin-top:12px}
+.card{background:var(--c)}.bal{font-size:36px;font-weight:700;letter-spacing:-.5px;background:linear-gradient(90deg,#fff,#c4b5fd);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.st{background:var(--c);border:1px solid var(--b);border-radius:16px;padding:12px;text-align:center}.st b{display:block;font-size:18px}.st span{font-size:11.5px;color:var(--m)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{border:0;border-radius:14px;padding:13px 14px;font:600 14.5px inherit;font-family:inherit;color:#fff;background:linear-gradient(135deg,var(--p),#5b8cff);cursor:pointer;box-shadow:0 8px 22px -8px var(--p);transition:.15s}
+.btn:active{transform:scale(.97)}.btn.g{background:var(--c);border:1px solid var(--b);box-shadow:none}.btn.d{background:rgba(248,113,113,.15);color:var(--bad);border:1px solid rgba(248,113,113,.3);box-shadow:none}.btn.s{padding:8px 12px;font-size:13px;border-radius:11px}
+.item{display:flex;align-items:center;gap:12px;background:var(--c);border:1px solid var(--b);border-radius:16px;padding:12px;margin-bottom:9px;cursor:pointer}
+.ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:20px;background:linear-gradient(135deg,rgba(124,92,255,.35),rgba(34,211,238,.2));flex:none}
+.gr{flex:1;min-width:0}.gr b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pill{font-size:11.5px;padding:3px 10px;border-radius:99px;font-weight:600;border:1px solid var(--b);white-space:nowrap}
+.pill.running,.pill.approved{color:var(--ok);background:rgba(52,211,153,.12)}.pill.stopped,.pill.rejected,.pill.cancelled{color:var(--bad);background:rgba(248,113,113,.12)}.pill.crashed,.pill.submitted,.pill.created{color:var(--w);background:rgba(251,191,36,.12)}.pill.adm{color:var(--w);background:rgba(251,191,36,.14)}
+.code{font:700 26px ui-monospace,monospace;text-align:center;letter-spacing:2px;padding:10px;margin:6px 0 10px;border:1px dashed var(--b);border-radius:14px;cursor:pointer}
+label{display:block;font-size:12.5px;color:var(--m);margin:12px 2px 5px}
+input,textarea,select{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--b);border-radius:13px;padding:12px;color:var(--t);font:14px inherit;font-family:inherit;outline:0}
+textarea{font-family:ui-monospace,monospace;font-size:12.5px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--p)}select option{color:#000}
+pre{background:#05050a;border:1px solid var(--b);border-radius:12px;padding:12px;font-size:11.5px;max-height:55vh;overflow:auto;white-space:pre-wrap;word-break:break-all}
+.empty{text-align:center;color:var(--m);padding:26px 10px;border:1px dashed var(--b);border-radius:16px}
+#nav{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));display:flex;background:rgba(20,20,34,.8);backdrop-filter:blur(20px);border:1px solid var(--b);border-radius:22px;padding:6px;z-index:5}
+#nav button{flex:1;background:0;border:0;color:var(--m);font:600 11px inherit;font-family:inherit;padding:7px 0;border-radius:16px}#nav i{display:block;font-style:normal;font-size:19px}#nav .on{color:#fff;background:linear-gradient(135deg,rgba(124,92,255,.5),rgba(34,211,238,.25))}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:20;display:flex;align-items:flex-end;animation:f .2s}
+.sh{width:100%;max-height:88vh;overflow:auto;background:#12121e;border:1px solid var(--b);border-radius:26px 26px 0 0;padding:10px 18px calc(22px + env(safe-area-inset-bottom));animation:u .25s}
+.grab{width:40px;height:4px;background:var(--b);border-radius:9px;margin:0 auto 12px}.sht{display:flex;justify-content:space-between;align-items:center;font-size:17px}.x{background:var(--c);border:0;color:var(--m);width:32px;height:32px;border-radius:50%}
+#toast{position:fixed;top:calc(12px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:50;padding:10px 18px;border-radius:14px;font-weight:600;font-size:13.5px;background:#1c1c2e;border:1px solid var(--b);max-width:90%;text-align:center;display:none}
+#toast.ok{border-color:var(--ok)}#toast.bad{border-color:var(--bad)}
+.full{position:fixed;inset:0;z-index:40;background:var(--bg);display:grid;place-items:center;text-align:center;padding:30px}
+.spin{width:34px;height:34px;border:3px solid var(--b);border-top-color:var(--p);border-radius:50%;animation:r .8s linear infinite;margin:40vh auto}
+@keyframes r{to{transform:rotate(360deg)}}@keyframes f{from{opacity:0}}@keyframes u{from{transform:translateY(40px);opacity:0}}
+</style></head><body>
+<div id="app"><div class="spin"></div></div><nav id="nav"></nav><div id="toast"></div>
+<script>
+const tg=window.Telegram&&Telegram.WebApp;if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('#0a0a12');tg.setBackgroundColor('#0a0a12')}catch(e){}}
+let S=null,tab='home',busy=false;
+const $=s=>document.querySelector(s),v=id=>document.getElementById(id).value.trim();
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>'৳'+(+n||0).toLocaleString('en-US',{maximumFractionDigits:2});
+const date=t=>t?new Date(t*1000).toLocaleDateString('en-GB',{day:'2-digit',month:'short'}):'';
+const ST={running:'🟢 চালু',stopped:'🔴 বন্ধ',crashed:'🟠 ক্র্যাশ',created:'অপেক্ষায়',submitted:'যাচাই চলছে',approved:'সফল',rejected:'রিজেক্ট',cancelled:'বাতিল'};
+function toast(m,k){const t=$('#toast');t.textContent=m;t.className=k||'';t.style.display='block';clearTimeout(t._t);t._t=setTimeout(()=>t.style.display='none',2800)}
+function full(h){let e=$('.full');if(!e){e=document.createElement('div');e.className='full';document.body.appendChild(e)}e.innerHTML=h}
+const unfull=()=>$('.full')&&$('.full').remove();
+function showAuth(){full('<div><div style="font-size:54px">🔐</div><h2 style="margin:10px 0">Telegram থেকে খুলুন</h2><p class="sm">এই অ্যাপ শুধু Telegram এর ভেতর থেকে অটো লগইন হয়।<br>বটে গিয়ে <b>/app</b> চাপুন বা চ্যাটের নিচের অ্যাপ বাটনে ট্যাপ করুন।</p></div>')}
+function showGate(chs){full(`<div style="width:100%"><div style="font-size:54px">🔒</div><h2 style="margin:10px 0">চ্যানেল জয়েন করুন</h2><p class="sm">ব্যবহার শুরু করতে নিচের চ্যানেলে জয়েন করে Verify চাপুন।</p>${chs.map(c=>`<button class="btn g wide" onclick="openTg('https://t.me/${esc(c).slice(1)}')">📢 ${esc(c)}</button>`).join('')}<button class="btn wide" onclick="run({a:'me'})">✅ Verify</button></div>`)}
+function openTg(u){tg?tg.openTelegramLink(u):window.open(u)}
+async function api(d){
+  const r=await fetch('/api',{method:'POST',headers:{'Content-Type':'application/json','X-Init-Data':(tg&&tg.initData)||''},body:JSON.stringify(d)});
+  const j=await r.json().catch(()=>({error:'সার্ভার রেসপন্স ভুল'}));
+  if(r.status===401){showAuth();throw 0}
+  if(j.gate){showGate(j.gate);throw 0}
+  if(!r.ok||j.error)throw new Error(j.error||'ত্রুটি হয়েছে');
+  unfull();if(j.state){S=j.state;render()}return j.data}
+async function run(d,msg,close){
+  if(busy)return;busy=true;
+  try{const r=await api(d);if(msg)toast(msg,'ok');if(close)closeSheet();tg&&tg.HapticFeedback&&tg.HapticFeedback.notificationOccurred('success');return r===undefined?null:r}
+  catch(e){if(e){toast(e.message,'bad');tg&&tg.HapticFeedback&&tg.HapticFeedback.notificationOccurred('error')}return undefined}
+  finally{busy=false}}
+function sheet(t,h){closeSheet();const e=document.createElement('div');e.className='ov';e.innerHTML=`<div class="sh"><div class="grab"></div><div class="sht"><b>${t}</b><button class="x" onclick="closeSheet()">✕</button></div>${h}</div>`;e.onclick=ev=>{if(ev.target===e)closeSheet()};document.body.appendChild(e)}
+const closeSheet=()=>{const e=$('.ov');e&&e.remove()};
+function ask(t,def,cb,ph){window._cb=cb;sheet(t,`<label>${esc(t)}</label><input id="q1" value="${esc(def==null?'':def)}" placeholder="${esc(ph||'')}"><button class="btn wide" onclick="const x=v('q1');closeSheet();_cb(x)">💾 সেভ</button>`)}
+function cp(x){navigator.clipboard&&navigator.clipboard.writeText(x).catch(()=>{});toast('📋 কপি হয়েছে','ok')}
+document.addEventListener('click',e=>{const c=e.target.closest('[data-cp]');if(c)cp(c.dataset.cp)});
+function support(){let s=(S.support||'').trim();if(!s)return;const u=s[0]=='@'?'https://t.me/'+s.slice(1):s.startsWith('http')?s:'https://'+s;/t\.me/.test(u)?openTg(u):(tg?tg.openLink(u):window.open(u))}
+function go(t){tab=t;render();scrollTo(0,0)}
+
+const botList=l=>l.length?l.map(b=>`<div class="item" onclick="botSheet('${esc(b.id)}')"><div class="ic">🤖</div><div class="gr"><b>@${esc(b.name)}</b><span class="sm">${b.source=='market'?'🛒 মার্কেট':'📂 কাস্টম'} · ${date(b.created)}</span></div><span class="pill ${esc(b.status)}">${ST[b.status]||esc(b.status)}</span></div>`).join(''):'<div class="empty">📭 এখনো কোনো বট নেই</div>';
+const V={};
+V.home=()=>{const m=S.me,r=S.bots.filter(b=>b.status=='running').length;return`
+<div class="hero"><div class="sm">স্বাগতম, ${esc(m.name)} ${m.admin?'<span class="pill adm">👑 ADMIN</span>':''}</div><div class="bal">${money(m.balance)}</div><div class="sm">ওয়ালেট ব্যালেন্স</div>
+<div class="grid2" style="margin-top:14px"><button class="btn" onclick="go('wallet')">＋ এড মানি</button><button class="btn g" onclick="newBot()">🚀 নতুন বট</button></div></div>
+<div class="stats"><div class="st"><b>${S.bots.length}</b><span>মোট বট</span></div><div class="st"><b>${r}</b><span>চালু</span></div><div class="st"><b>${money(S.price)}</b><span>চার্জ/বট</span></div></div>
+<h3>আপনার বট</h3>${botList(S.bots.slice(0,4))}${S.support?`<button class="btn g wide" onclick="support()">📞 সাপোর্ট · ${esc(S.support)}</button>`:''}`};
+V.bots=()=>`<h3>আমার বটসমূহ (${S.bots.length})</h3>${botList(S.bots)}<button class="btn wide" onclick="newBot()">🚀 নতুন বট ডিপ্লয় (${money(S.price)})</button>`;
+V.market=()=>`<h3>বট মার্কেট</h3>${S.tpls.length?S.tpls.map(t=>`<div class="card"><div style="display:flex;justify-content:space-between;gap:8px"><b>🤖 ${esc(t.name)}</b><b style="color:var(--ok)">${money(t.price)}</b></div><p class="sm" style="margin:6px 0 12px">${esc(t.desc)||'রেডি বট — শুধু টোকেন দিন'}</p><div style="display:flex;justify-content:space-between;align-items:center"><span class="sm">🛒 ${t.sold}জন কিনেছে</span><button class="btn s" onclick="buyTpl('${esc(t.id)}')">কিনুন ও চালু করুন</button></div></div>`).join(''):'<div class="empty">📭 মার্কেটে এখনো কোনো বট নেই</div>'}`;
+V.wallet=()=>{const cur=[...S.pays].reverse().find(p=>p.status=='created'),h=[...S.pays].reverse().filter(p=>p.status!='created');return`
+<div class="hero"><div class="bal">${money(S.me.balance)}</div><div class="sm">বর্তমান ব্যালেন্স</div></div>
+${cur?`<div class="card"><div class="sm" style="text-align:center">Reference কোড (ট্যাপ করে কপি)</div><div class="code" data-cp="${esc(cur.code)}">${esc(cur.code)}</div>
+${S.nums.map(n=>`<div class="item" data-cp="${esc(n.number)}"><div class="ic">💠</div><div class="gr"><b>${esc(n.method)}</b><span class="sm">${esc(n.number)}</span></div><span class="sm">কপি</span></div>`).join('')}
+<p class="sm" style="margin:6px 0 10px">উপরের নাম্বারে টাকা পাঠিয়ে Reference এ কোডটি লিখুন, তারপর জমা দিন।</p>
+<div class="grid2"><button class="btn" onclick="paySheet('${esc(cur.code)}')">✅ I Paid</button><button class="btn d" onclick="run({a:'pay_cancel',code:'${esc(cur.code)}'},'বাতিল হয়েছে')">বাতিল</button></div></div>`
+:`<button class="btn wide" onclick="run({a:'pay_new'})">💳 নতুন পেমেন্ট রিকোয়েস্ট</button>`}
+<h3>লেনদেনের ইতিহাস</h3>${h.length?h.map(p=>`<div class="item" style="cursor:default"><div class="ic">💵</div><div class="gr"><b>${p.amount!=null?money(p.amount):'—'}</b><span class="sm">${esc(p.code)} · ${date(p.created)}</span></div><span class="pill ${esc(p.status)}">${ST[p.status]||esc(p.status)}</span></div>`).join(''):'<div class="empty">কোনো লেনদেন নেই</div>'}`};
+V.admin=()=>{const a=S.adm;return`<h3>👑 এডমিন ড্যাশবোর্ড</h3>
+<div class="stats" style="grid-template-columns:1fr 1fr"><div class="st"><b>${a.users}</b><span>ইউজার</span></div><div class="st"><b>${a.running}/${a.bots}</b><span>চালু/মোট বট</span></div><div class="st"><b>${money(a.deposit)}</b><span>মোট ডিপোজিট</span></div><div class="st"><b>${a.pending.length}</b><span>পেন্ডিং পেমেন্ট</span></div></div>
+<h3>⏳ পেন্ডিং পেমেন্ট</h3>${a.pending.length?a.pending.map(p=>`<div class="card"><b>${esc(p.name)}</b> <span class="sm">· ${p.uid}</span><div style="margin:6px 0">${money(p.amount)} · <span class="sm">TrxID: ${esc(p.trx)}</span></div><div class="grid2"><button class="btn s" onclick="run({a:'pay_decide',code:'${esc(p.code)}',ok:true},'✅ অ্যাপ্রুভড')">✅ Approve</button><button class="btn d s" onclick="run({a:'pay_decide',code:'${esc(p.code)}',ok:false},'রিজেক্ট করা হয়েছে')">❌ Reject</button></div></div>`).join(''):'<div class="empty">✅ কোনো পেন্ডিং নেই</div>'}
+<h3>⚙️ সেটিংস</h3><div class="grid2"><button class="btn g" onclick="ask('গ্লোবাল বট প্রাইস',S.price,x=>run({a:'price_set',price:x},'দাম আপডেট'))">💲 ${money(S.price)}</button><button class="btn g" onclick="ask('সাপোর্ট @username/লিংক',S.support,x=>run({a:'support_set',support:x},'সাপোর্ট সেট'))">📞 সাপোর্ট</button></div>
+<h3>💳 পেমেন্ট নাম্বার</h3>${S.nums.map(n=>`<div class="item" style="cursor:default"><div class="ic">💠</div><div class="gr"><b>${esc(n.method)}</b><span class="sm">${esc(n.number)}</span></div><button class="btn d s" onclick="run({a:'num_del',id:'${esc(n.id)}'})">🗑</button></div>`).join('')}<button class="btn g wide" onclick="numSheet()">➕ নাম্বার এড</button>
+<h3>🔒 চ্যানেল লক</h3>${S.channels.map(c=>`<div class="item" style="cursor:default"><div class="ic">📢</div><div class="gr"><b>${esc(c)}</b></div><button class="btn d s" onclick="run({a:'ch_del',ch:'${esc(c)}'})">🗑</button></div>`).join('')}<button class="btn g wide" onclick="ask('চ্যানেল @username','',x=>run({a:'ch_add',ch:x},'চ্যানেল এড হয়েছে'),'@mychannel')">➕ চ্যানেল এড</button>
+<h3>🛍 মার্কেট বট</h3>${S.tpls.map(t=>`<div class="item" style="cursor:default"><div class="ic">🤖</div><div class="gr"><b>${esc(t.name)}</b><span class="sm">${money(t.price)} · বিক্রি ${t.sold}</span></div><button class="btn g s" onclick="ask('নতুন দাম','${esc(t.price)}',x=>run({a:'tpl_price',tid:'${esc(t.id)}',price:x},'দাম আপডেট'))">💲</button> <button class="btn d s" onclick="if(confirm('মুছবেন?'))run({a:'tpl_del',tid:'${esc(t.id)}'})">🗑</button></div>`).join('')}<button class="btn g wide" onclick="tplSheet()">➕ মার্কেটে নতুন বট</button>`};
+const T=[['home','🏠','হোম'],['bots','🤖','বট'],['market','🛒','মার্কেট'],['wallet','💳','ওয়ালেট'],['admin','👑','এডমিন']];
+function render(){if(!S)return;if(tab=='admin'&&!S.me.admin)tab='home';$('#app').innerHTML=V[tab]();$('#nav').innerHTML=T.filter(t=>t[0]!='admin'||S.me.admin).map(t=>`<button class="${t[0]==tab?'on':''}" onclick="go('${t[0]}')"><i>${t[1]}</i>${t[2]}</button>`).join('')}
+
+const codeBox=`<label>বটের কোড</label><textarea id="cd" rows="8" placeholder="# Python কোড পেস্ট করুন"></textarea><input type="file" id="fl" accept=".py" hidden onchange="pick(this)"><button class="btn g wide" onclick="document.getElementById('fl').click()">📂 .py ফাইল সিলেক্ট করুন</button>`;
+function pick(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>document.getElementById('cd').value=r.result;r.readAsText(f)}
+const tokBox=`<label>Bot Token (@BotFather থেকে)</label><input id="tk" placeholder="123456:ABC..." autocomplete="off"><label>বটের এডমিন আইডি (বটে এডমিন সিস্টেম থাকলে)</label><input id="ad" inputmode="numeric" value="${S&&S.me.id}">`;
+function newBot(){sheet('🚀 নতুন বট ডিপ্লয়',`<p class="sm">চার্জ <b>${money(S.price)}</b> · ব্যালেন্স ${money(S.me.balance)}</p>${tokBox}${codeBox}<button class="btn wide" onclick="deploy()">🚀 ডিপ্লয় করুন</button>`)}
+async function deploy(){toast('⏳ ডিপ্লয় হচ্ছে… একটু অপেক্ষা করুন');if(await run({a:'deploy',token:v('tk'),admin:v('ad'),code:document.getElementById('cd').value},'✅ বট চালু হয়েছে!',true)!==undefined)go('bots')}
+function buyTpl(id){const t=S.tpls.find(x=>x.id==id);sheet('🛒 '+esc(t.name),`<p class="sm">দাম <b>${money(t.price)}</b> · ব্যালেন্স ${money(S.me.balance)}</p>${tokBox}<button class="btn wide" onclick="buy('${esc(id)}')">কিনুন ও চালু করুন</button>`)}
+async function buy(id){toast('⏳ ডিপ্লয় হচ্ছে…');if(await run({a:'buy',tid:id,token:v('tk'),admin:v('ad')},'✅ বট চালু হয়েছে!',true)!==undefined)go('bots')}
+function botSheet(id){const b=S.bots.find(x=>x.id==id);if(!b)return;const on=b.status=='running',q=`'${esc(id)}'`;
+sheet('🤖 @'+esc(b.name),`<p style="margin:8px 0"><span class="pill ${esc(b.status)}">${ST[b.status]||esc(b.status)}</span> <span class="sm"> ${b.source=='market'?'মার্কেট':'কাস্টম'} · ${date(b.created)}</span></p>
+<div class="grid2">${on?`<button class="btn d" onclick="botAct(${q},'stop','⏹ বন্ধ হয়েছে')">⏹ Stop</button>`:`<button class="btn" onclick="botAct(${q},'start','▶️ চালু হয়েছে')">▶️ Start</button>`}<button class="btn g" onclick="botAct(${q},'restart','🔄 রিস্টার্ট হয়েছে')">🔄 Restart</button><button class="btn g" onclick="logs(${q})">📜 Logs</button><button class="btn g" onclick="editCode(${q})">✏️ কোড এডিট</button></div>
+${on?`<button class="btn g wide" onclick="openTg('https://t.me/${esc(b.name)}')">🔗 বট ওপেন করুন</button>`:''}<button class="btn d wide" onclick="if(confirm('বটটি মুছে ফেলবেন? টাকা ফেরত হবে না।'))botAct(${q},'del','🗑 মুছে ফেলা হয়েছে')">🗑 ডিলিট</button>`)}
+const botAct=(bid,act,m)=>run({a:'bot',bid,act},m,true);
+async function logs(bid){const r=await run({a:'logs',bid});if(r!==undefined)sheet('📜 লাইভ লগ',`<pre>${esc(r)}</pre><button class="btn g wide" onclick="logs('${esc(bid)}')">🔄 রিফ্রেশ</button>`)}
+async function editCode(bid){const r=await run({a:'getcode',bid});if(r!==undefined)sheet('✏️ কোড এডিটর',`<textarea id="cd" rows="14">${esc(r)}</textarea><p class="sm" style="margin-top:6px">সেভ করলে বট অটো রিস্টার্ট হবে (ফ্রি)।</p><button class="btn wide" onclick="saveCode('${esc(bid)}')">💾 সেভ করুন</button>`)}
+const saveCode=bid=>run({a:'savecode',bid,code:document.getElementById('cd').value},'✅ কোড আপডেট হয়েছে',true);
+function paySheet(code){sheet('✅ পেমেন্ট জমা দিন',`<label>কত টাকা পাঠিয়েছেন?</label><input id="am" inputmode="decimal" placeholder="100"><label>Transaction ID (TrxID)</label><input id="tx" placeholder="8N7A6D5E4C" autocomplete="off"><button class="btn wide" onclick="run({a:'pay_submit',code:'${esc(code)}',amount:v('am'),trx:v('tx')},'✅ জমা হয়েছে — এডমিন যাচাই করবেন',true)">জমা দিন</button>`)}
+function numSheet(){sheet('➕ পেমেন্ট নাম্বার',`<label>মেথড</label><select id="mt"><option>bKash</option><option>Nagad</option><option>Rocket</option><option>Crypto</option></select><label>নাম্বার / ওয়ালেট এড্রেস</label><input id="nb"><button class="btn wide" onclick="run({a:'num_add',method:v('mt'),number:v('nb')},'✅ এড হয়েছে',true)">সেভ</button>`)}
+function tplSheet(){sheet('➕ মার্কেটে নতুন বট',`<label>নাম</label><input id="tn"><label>দাম (৳)</label><input id="tp" inputmode="decimal"><label>বিবরণ</label><input id="td">${codeBox}<button class="btn wide" onclick="run({a:'tpl_add',name:v('tn'),price:v('tp'),desc:v('td'),code:document.getElementById('cd').value},'✅ মার্কেটে যোগ হয়েছে',true)">যোগ করুন</button>`)}
+
+if(!tg||!tg.initData)showAuth();else{run({a:'me'});setInterval(()=>{if(!$('.ov')&&!busy&&!document.hidden)api({a:'me'}).catch(()=>{})},20000)}
+</script></body></html>
